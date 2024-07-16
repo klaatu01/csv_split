@@ -47,14 +47,12 @@ fn main() {
         file.write_all(headers.as_bytes())
             .expect("error writing file");
 
-        file.write_all(b"\n").expect("error writing file");
-
         for _ in 0..args.lines {
             match lines.next() {
                 Some(line) => {
                     let line = line.expect("error reading file");
-                    file.write_all(line.as_bytes()).expect("error writing file");
                     file.write_all(b"\n").expect("error writing file");
+                    file.write_all(line.as_bytes()).expect("error writing file");
                 }
                 None => {
                     file.flush().expect("error writing file");
